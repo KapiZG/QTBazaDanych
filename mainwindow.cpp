@@ -24,15 +24,15 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Opened!";
         connect(ui->Zaloguj, &QPushButton::pressed, this, &MainWindow::logowanie);
         connect(ui->Zarejestruj, &QPushButton::pressed, this, &MainWindow::rejestracja);
-        QSqlQuery query;
-        query.exec("Select * from ksiazki where id not in(Select id_ksiazki from wyporzyczenia)");
-        while(query.next())
-        {
-            int id = query.value(0).toInt();
-            QString tytul = query.value(1).toString();
-            float cena = query.value(2).toFloat();
-            qDebug() << id << " " << tytul << " " << cena << Qt::endl;
-        }
+//        QSqlQuery query;
+//        query.exec("Select * from ksiazki where id not in(Select id_ksiazki from wyporzyczenia)");
+//        while(query.next())
+//        {
+//            int id = query.value(0).toInt();
+//            QString tytul = query.value(1).toString();
+//            float cena = query.value(2).toFloat();
+//            qDebug() << id << " " << tytul << " " << cena << Qt::endl;
+//        }
     }
     else
     {
@@ -86,7 +86,7 @@ void MainWindow::logowanie()
             this->layout()->addWidget(potwierdzenie);
             connect(zatwierdz, &QPushButton::pressed, this, [this, nazwaUzytkownika]()
             {
-                Biblioteka *biblioteka = new Biblioteka(&nazwaUzytkownika);
+                Biblioteka *biblioteka = new Biblioteka(&nazwaUzytkownika, &this->db);
                 biblioteka->show();
                 this->close();
             });
@@ -144,12 +144,13 @@ void MainWindow::rejestracja()
             layout->addWidget(pomyslnie);
             layout->addWidget(zatwierdz);
             udane->setLayout(layout);
+            this->layout()->addWidget(udane);
 
             connect(zatwierdz, &QPushButton::pressed, this, [udane, this]()
             {
                 delete udane;
-                ui->Zaloguj->show();
-                ui->Zarejestruj->show();
+                this->ui->Zaloguj->show();
+                this->ui->Zarejestruj->show();
             });
         }
         else if(pLogin->length() <= 3 && pHaslo->length() > 3)

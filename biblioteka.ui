@@ -26,6 +26,26 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QTableView" name="Ksiazki">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>120</y>
+     <width>951</width>
+     <height>371</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>520</y>
+     <width>951</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
