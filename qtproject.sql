@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 06 Lis 2022, 22:09
+-- Czas generowania: 16 Lis 2022, 22:23
 -- Wersja serwera: 10.4.25-MariaDB
 -- Wersja PHP: 8.1.10
 
@@ -42,7 +42,18 @@ CREATE TABLE `ksiazki` (
 INSERT INTO `ksiazki` (`id`, `tytul`, `cena`) VALUES
 (1, 'Zaczarowany Śmietnik', 35.99),
 (2, 'Przygody przegrywa', 199.99),
-(3, 'Na krańcu dachu', 12.99);
+(3, 'Na krańcu dachu', 12.99),
+(4, 'Gąsienica', 27.99),
+(5, 'Piercing', 45.59),
+(6, 'Siedem Lat Ciemnosci', 89.99),
+(7, 'O Zmieszchu', 99.99),
+(8, 'Dworska tancerka', 199.99),
+(9, 'Będę tam, zaopiekuj się moją mamą', 19.99),
+(10, 'Neony', 9.99),
+(11, ' Płaski świat', 299.99),
+(12, 'Ultrafiolet', 83.34),
+(13, 'Tętniące życie', 88.82),
+(14, 'Dzikie łabędzie', 34.44);
 
 -- --------------------------------------------------------
 
@@ -64,7 +75,15 @@ INSERT INTO `users` (`id`, `nazwa`, `haslo`) VALUES
 (1, 'KapiZG', 'wse'),
 (2, 'qwe', 'ewq'),
 (3, 'wse', 'Podaj Hasło'),
-(4, 'stef', 'wsde');
+(4, 'stef', 'wsde'),
+(5, 'Konrad', 'Tyczka'),
+(6, 'asdasd', 'asdsad'),
+(7, 'qwerew', 'sdasad'),
+(8, 'qwert', 'trewq'),
+(9, 'Kamil', '1234'),
+(10, 'Ronve', '1234'),
+(11, 'Konopka', 'Konrad123'),
+(12, 'Podaj Nazwę użytkownika/Email', 'Podaj Hasło');
 
 -- --------------------------------------------------------
 
@@ -84,7 +103,15 @@ CREATE TABLE `wyporzyczenia` (
 --
 
 INSERT INTO `wyporzyczenia` (`id`, `id_usera`, `id_ksiazki`, `data`) VALUES
-(1, 1, 2, '2022-11-06 15:53:20');
+(34, 2, 1, '2022-11-16 21:12:53'),
+(42, 2, 9, '2022-11-16 21:13:00'),
+(45, 2, 10, '2022-11-16 21:13:00'),
+(53, 2, 4, '2022-11-16 21:22:11'),
+(54, 2, 5, '2022-11-16 21:22:11'),
+(55, 2, 6, '2022-11-16 21:22:11'),
+(56, 2, 7, '2022-11-16 21:22:12'),
+(57, 2, 13, '2022-11-16 21:22:12'),
+(97, 11, 14, '2022-11-16 21:22:58');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -118,19 +145,19 @@ ALTER TABLE `wyporzyczenia`
 -- AUTO_INCREMENT dla tabeli `ksiazki`
 --
 ALTER TABLE `ksiazki`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT dla tabeli `wyporzyczenia`
 --
 ALTER TABLE `wyporzyczenia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- Ograniczenia dla zrzutów tabel

@@ -74,6 +74,7 @@ void MainWindow::logowanie()
         if(sprawdzenieLogowania.next())
         {
             delete logowanie;
+            int *id = new int(sprawdzenieLogowania.value(0).toInt());
             qDebug()<<"Zalogowałeś się";
             QWidget *potwierdzenie = new QWidget;
             QTextEdit *poprawne = new QTextEdit("Udało się zalogować");
@@ -84,9 +85,9 @@ void MainWindow::logowanie()
             layout->addWidget(zatwierdz);
             potwierdzenie->setLayout(layout);
             this->layout()->addWidget(potwierdzenie);
-            connect(zatwierdz, &QPushButton::pressed, this, [this, nazwaUzytkownika]()
+            connect(zatwierdz, &QPushButton::pressed, this, [this, nazwaUzytkownika, id]()
             {
-                Biblioteka *biblioteka = new Biblioteka(&nazwaUzytkownika, &this->db);
+                Biblioteka *biblioteka = new Biblioteka(id, &nazwaUzytkownika, &this->db);
                 biblioteka->show();
                 this->close();
             });

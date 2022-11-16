@@ -36,7 +36,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTableView" name="tableView">
+  <widget class="QTableView" name="Wypozyczone">
    <property name="geometry">
     <rect>
      <x>20</x>

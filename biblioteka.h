@@ -12,15 +12,16 @@ class Biblioteka : public QWidget
     Q_OBJECT
 
 public:
-    explicit Biblioteka(QString const *a, class QSqlDatabase *database, QWidget *parent = nullptr);
+    explicit Biblioteka(int *i, QString const *a, class QSqlDatabase *database, QWidget *parent = nullptr);
     ~Biblioteka();
     void wypozyczoneKsiazki();
+    void tabelaDostepnychKsiazek();
 
 private:
     Ui::Biblioteka *ui;
+    int *id;
     const QString *user;
     QSqlDatabase *db;
-    class QStandardItemModel *widokTabeli;
 };
 
 #endif // BIBLIOTEKA_H
