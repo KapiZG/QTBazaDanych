@@ -4,6 +4,7 @@
 #include <QtSql>
 #include <QStandardItemModel>
 #include <QPushButton>
+#include "mainwindow.h"
 
 Biblioteka::Biblioteka(int *idd, const QString *a, QSqlDatabase *database,  QWidget *parent) :
     QWidget(parent),
@@ -16,10 +17,16 @@ Biblioteka::Biblioteka(int *idd, const QString *a, QSqlDatabase *database,  QWid
     db = database;
     ui->NazwaUzytkownika->setText(QString("Witaj z powrotem: ") + *a);
 
-//Tworzenie rabeli z dostępnymi książkami
+//Tworzenie tabeli z dostępnymi książkami
    tabelaDostepnychKsiazek();
    wypozyczoneKsiazki();
 
+   connect(ui->Wyloguj, &QPushButton::pressed, this, [this]()
+   {
+       MainWindow *menu = new MainWindow();
+       menu->show();
+       this->close();
+   });
 
 }
 

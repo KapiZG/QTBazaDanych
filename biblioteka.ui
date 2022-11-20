@@ -46,6 +46,19 @@
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="Wyloguj">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>10</y>
+     <width>141</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wyloguj się</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

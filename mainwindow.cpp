@@ -52,15 +52,27 @@ void MainWindow::logowanie()
     ui->Zaloguj->hide();
     ui->Zarejestruj->hide();
     QWidget *logowanie = new QWidget();
-    QLineEdit *login = new QLineEdit("Wpisz nazwę");
-    QLineEdit *haslo = new QLineEdit("Wpisz haslo");
+    QLineEdit *login = new QLineEdit();
+    login->setPlaceholderText("Wpisz nazwę");
+    QLineEdit *haslo = new QLineEdit();
+    haslo->setPlaceholderText("Wpisz haslo");
     QPushButton *potwierdz = new QPushButton("Potwierdź");
+    QPushButton *cofnij = new QPushButton("Cofnij");
     QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget(login);
     layout->addWidget(haslo);
     layout->addWidget(potwierdz);
+    layout->addWidget(cofnij);
     logowanie->setLayout(layout);
     this->layout()->addWidget(logowanie);
+
+    connect(cofnij, &QPushButton::pressed, this, [logowanie, this]()
+    {
+        delete logowanie;
+        this->ui->Zaloguj->show();
+        this->ui->Zarejestruj->show();
+    });
+
     connect(potwierdz, &QPushButton::pressed, this, [logowanie, login, haslo, this]()
     {
 
@@ -80,11 +92,15 @@ void MainWindow::logowanie()
             QTextEdit *poprawne = new QTextEdit("Udało się zalogować");
             poprawne->setReadOnly(true);
             QPushButton *zatwierdz = new QPushButton("Zatwierdź");
+
             QVBoxLayout *layout = new QVBoxLayout();
             layout->addWidget(poprawne);
             layout->addWidget(zatwierdz);
             potwierdzenie->setLayout(layout);
             this->layout()->addWidget(potwierdzenie);
+
+
+
             connect(zatwierdz, &QPushButton::pressed, this, [this, nazwaUzytkownika, id]()
             {
                 Biblioteka *biblioteka = new Biblioteka(id, &nazwaUzytkownika, &this->db);
@@ -108,21 +124,31 @@ void MainWindow::rejestracja()
 
     QWidget *rejestracja = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
-    QLineEdit *login = new QLineEdit("Podaj Nazwę użytkownika/Email");
-    QLineEdit *haslo = new QLineEdit("Podaj Hasło");
+    QLineEdit *login = new QLineEdit();
+    login->setPlaceholderText("Podaj Nazwę użytkownika/Email");
+    QLineEdit *haslo = new QLineEdit();
+    haslo->setPlaceholderText("Podaj Hasło");
     QPushButton *zatwierdz = new QPushButton("Zatwierdż");
+    QPushButton *cofnij = new QPushButton("Cofnij");
 
     QLineEdit *blad = new QLineEdit();
     blad->hide();
 
 
-
     layout->addWidget(login);
     layout->addWidget(haslo);
     layout->addWidget(zatwierdz);
+    layout->addWidget(cofnij);
     layout->addWidget(blad);
     rejestracja->setLayout(layout);
     this->layout()->addWidget(rejestracja);
+
+    connect(cofnij, &QPushButton::pressed, this, [rejestracja, this]()
+    {
+        delete rejestracja;
+        this->ui->Zaloguj->show();
+        this->ui->Zarejestruj->show();
+    });
 
     connect(zatwierdz, &QPushButton::pressed, this, [=]()
     {
@@ -140,6 +166,7 @@ void MainWindow::rejestracja()
             QWidget *udane = new QWidget();
             QVBoxLayout *layout = new QVBoxLayout();
             QTextEdit *pomyslnie = new QTextEdit((std::string("Udało się zarejestrować użytkownika: ") + pLogin->toStdString()).c_str());
+            pomyslnie->setReadOnly(true);
             QPushButton *zatwierdz = new QPushButton("Zatwierdź");
 
             layout->addWidget(pomyslnie);
